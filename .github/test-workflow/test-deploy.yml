@@ -1,4 +1,4 @@
-name: Deploy to EC2
+name: deploy to ec2
 
 on:
   push:
@@ -7,14 +7,14 @@ on:
 
 jobs:
   deployment:
-    name: Deploy
+    name: deploy
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out Repo
+      - name: check out repo
         uses: actions/checkout@v4
 
-      - name: Copy files to EC2
+      - name: copy files to ec2
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.HOST }}
@@ -24,7 +24,7 @@ jobs:
           source: "."
           target: "/home/ubuntu/docker-test_CI-CD"
 
-      - name: Run Docker on EC2
+      - name: run docker on ec2
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
